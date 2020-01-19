@@ -9,6 +9,8 @@ import (
 
 type AccessTokenHandler interface {
 	GetById(c *gin.Context)
+	Create(c *gin.Context)
+	UpdateExpires(c *gin.Context)
 }
 
 type accessTokenHandler struct {
@@ -30,4 +32,32 @@ func (h *accessTokenHandler) GetById(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, accessToken)
+}
+
+func (h *accessTokenHandler) Create(c *gin.Context) {
+	var at access_token.AccessToken
+	if err := c.ShouldBindJSON(&at); err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	if err := h.service.Create(at); err != nil {
+		c.JSON(err.Status, err.Error)
+		return
+	}
+	c.JSON(http.StatusCreated, nil)
+}
+
+func (h *accessTokenHandler) UpdateExpires(c *gin.Context) {
+	accessTokenId := strings.TrimSpace(c.Param("access_token_id"))
+	var at access_token.AccessToken
+	at.AccessToken = accessTokenId
+	if err := c.ShouldBindJSON(&at); err != nil {
+		c.JSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	if err := h.service.UpdateExpires(at); err != nil {
+		c.JSON(err.Status, err)
+		return
+	}
+	c.JSON(http.StatusOK, nil)
 }
