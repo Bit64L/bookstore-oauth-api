@@ -9,10 +9,11 @@ require (
 	github.com/json-iterator/go v1.1.9 // indirect
 	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.11 // indirect
-	github.com/mercadolibre/golang-restclient v0.0.0-20170701022150-51958130a0a0 // indirect
+	github.com/mercadolibre/golang-restclient v0.0.0-20170701022150-51958130a0a0
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/stretchr/objx v0.2.0 // indirect
+	github.com/stretchr/testify v1.4.0
 	golang.org/x/crypto v0.0.0-20200109152110-61a87790db17 // indirect
 	golang.org/x/mod v0.2.0 // indirect
 	golang.org/x/net v0.0.0-20191209160850-c0dbc17a3553 // indirect

@@ -18,5 +18,5 @@ func StartApplication() {
 	g.GET("/oauth/access_token/:access_token_id", atHandler.GetById)
 	g.POST("/oauth/access_token", atHandler.Create)
 	g.PUT("/oauth/access_token/:access_token_id", atHandler.UpdateExpires)
-	g.Run(":8080")
+	g.Run(":5002")
 }

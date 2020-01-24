@@ -10,7 +10,7 @@ import (
 
 var (
 	userRestClient = rest.RequestBuilder{
-		BaseURL: "localhost:5001",
+		BaseURL: "https://api.bookstore.com:5001",
 		Timeout: 100 * time.Millisecond,
 	}
 )
@@ -32,7 +32,7 @@ func (r *userRepository) LoginUser(email string, password string) (*users.User, 
 		Password: password,
 	}
 
-	response := userRestClient.Post("/login", loginRequest)
+	response := userRestClient.Post("/internal/users/login", loginRequest)
 	if response == nil || response.Response == nil {
 		return nil, errors.NewInternalServerError("error when trying get response from login")
 	}
